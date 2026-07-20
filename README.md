@@ -38,7 +38,7 @@ Watch the complete demonstration of AI-VTON, including product browsing, AI body
 ## 📁 Project Structure
 
 ```
-ecom-vton/
+ai-vton-project/
 ├── backend-fastapi/
 │   ├── models/
 │   │   ├── __init__.py
