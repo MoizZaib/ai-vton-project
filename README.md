@@ -4,9 +4,9 @@ An AI-powered Final Year Design Project that estimates body measurements using M
 
 ## 🎥 Project Demo
 
-Watch the complete demonstration of AI-VTON, including product browsing, AI body measurement, clothing size recommendation, virtual try-on, and the admin panel.
-
 **📹 Demo Video:** https://streamable.com/gxrmw7
+
+The demo showcases the complete workflow, including product browsing, AI body measurement, clothing size recommendation, virtual try-on, and the admin panel.
 
 ## 🎯 Features
 
