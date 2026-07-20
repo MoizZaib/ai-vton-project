@@ -311,8 +311,7 @@ My primary responsibility in this project was backend development. My contributi
 ## 📄 License
 
 This repository is shared for educational and portfolio purposes only.
+
 ---
 
 Built with ❤️ using Python, FastAPI, React, MediaPipe, and OpenCV.
-
----
