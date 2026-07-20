@@ -1,6 +1,12 @@
-# AI-Based Clothing Size Suggestion
+# AI-VTON: AI-Powered Virtual Try-On & Clothing Size Recommendation
 
-A local prototype for AI-powered clothing size recommendations using MediaPipe for body measurement extraction.
+An AI-powered Final Year Design Project that estimates body measurements using MediaPipe, recommends suitable clothing sizes, and provides a virtual try-on experience for e-commerce applications.
+
+## 🎥 Project Demo
+
+Watch the complete demonstration of AI-VTON, including product browsing, AI body measurement, clothing size recommendation, virtual try-on, and the admin panel.
+
+**📹 Demo Video:** https://streamable.com/gxrmw7
 
 ## 🎯 Features
 
@@ -274,20 +280,39 @@ This codebase is designed to be modular for future enhancements:
    - Ensure good lighting
    - Face the camera directly
 
-## 📄 License
 
-MIT License - Feel free to use and modify for your projects.
+## 👥 Team
 
-## 👥 Team & Credits
+This project was developed as a **Final Year Design Project (FYDP)** at **Dawood University of Engineering & Technology, Karachi**, under the supervision of **Mr. Irfan Ahmed**.
 
-This was built as a **Final Year Design Project (FYDP)** at Dawood University of Engineering and Technology, Karachi, supervised by Mr. Irfan Ahmed, titled *"AI-Powered Virtual Try-On System for E-Commerce Apparel Website."*
+### Team Members
 
-**Team members:** Muhammad Anas, Faraz Ahmed, Moiz Zaib, Hassaan Qaisar, Daniyal Ahmed
-
-**My contribution (Moiz Zaib):** Backend — FastAPI application, size-comparison/fit logic, and API endpoints. *(Update this line with the specific parts you personally built — e.g. which endpoints, which service files, or which parts of the measurement pipeline.)*
-
-The original team repository is at [muhammad-anas19/fyp-ecom-vton](https://github.com/muhammad-anas19/fyp-ecom-vton) — this copy is maintained for my own portfolio with the same codebase.
+- Muhammad Anas
+- Faraz Ahmed
+- Moiz Zaib
+- Hassaan Qaisar
+- Daniyal Ahmed
 
 ---
 
-Built with ❤️ using FastAPI, React, and MediaPipe
+## 👨‍💻 My Contribution
+
+My primary responsibility in this project was backend development. My contributions included:
+
+- Developed RESTful APIs using **FastAPI**
+- Implemented clothing size comparison and fit recommendation logic
+- Integrated **MediaPipe Pose** for AI-based body measurement estimation
+- Used **OpenCV** for image processing and measurement extraction
+- Assisted with frontend-backend integration
+- Tested, debugged, and improved backend functionality
+
+---
+
+## 📄 License
+
+This repository is shared for educational and portfolio purposes only.
+---
+
+Built with ❤️ using Python, FastAPI, React, MediaPipe, and OpenCV.
+
+---
