@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Classic White Shirt",
+    "shoulder": 17,
+    "chest": 40,
+    "sleeve": 25,
+    "neck": 15.5,
+    "length": 28,
+    "image": "uploads/shirt1.webp"
+  },
+  {
+    "id": 2,
+    "name": "Casual Blue T-Shirt",
+    "shoulder": 18,
+    "chest": 42,
+    "sleeve": 8,
+    "neck": 16,
+    "length": 27,
+    "image": "uploads/shirt2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Slim Fit Black Shirt",
+    "shoulder": 16,
+    "chest": 38,
+    "sleeve": 24,
+    "neck": 15,
+    "length": 27,
+    "image": "uploads/shirt3.webp"
+  },
+  {
+    "id": 4,
+    "name": "Basic Green Shirt",
+    "shoulder": 15.0,
+    "chest": 38.0,
+    "sleeve": 19.9,
+    "neck": 15.0,
+    "length": 35.0,
+    "image": "uploads/4bc4dd18-caa8-4738-a991-7ad726ce85d2.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Basic Black Shirt",
+    "shoulder": 19.0,
+    "chest": 40.0,
+    "sleeve": 9.0,
+    "neck": null,
+    "length": 28.0,
+    "image": "uploads/fee542d3-a902-4dc2-a5fe-43e46d5de1e9.webp"
+  }
+]

@@ -1,0 +1,293 @@
+# AI-Based Clothing Size Suggestion
+
+A local prototype for AI-powered clothing size recommendations using MediaPipe for body measurement extraction.
+
+## 🎯 Features
+
+- **Admin Panel**: Upload products with size details (shoulder, chest, sleeve, neck, length)
+- **User Panel**: Browse products and check size compatibility
+- **AI Measurement**: Upload upper-body photo to extract body measurements using MediaPipe
+- **Size Comparison**: Get detailed fit recommendations (Tight/Normal/Loose)
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React (Vite)
+- Tailwind CSS
+- Axios
+- React Router
+
+### Backend
+
+- Python FastAPI
+- MediaPipe (body pose detection)
+- OpenCV (image processing)
+- Pydantic (data validation)
+
+### Storage
+
+- Local JSON file (product_db.json)
+
+## 📁 Project Structure
+
+```
+ecom-vton/
+├── backend-fastapi/
+│   ├── models/
+│   │   ├── __init__.py
+│   │   └── schemas.py
+│   ├── services/
+│   │   ├── __init__.py
+│   │   └── measurement_service.py
+│   ├── uploads/
+│   ├── main.py
+│   ├── product_db.json
+│   └── requirements.txt
+├── frontend-react/
+│   ├── src/
+│   │   ├── api/
+│   │   │   └── api.js
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   ├── ProductList.jsx
+│   │   │   ├── SizeChecker.jsx
+│   │   │   └── AdminPanel.jsx
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── tailwind.config.js
+│   └── postcss.config.js
+└── README.md
+```
+
+## 🚀 Installation & Setup
+
+### Prerequisites
+
+- Python 3.9+
+- Node.js 18+
+- pip (Python package manager)
+- npm (Node package manager)
+
+### Backend Setup
+
+1. Navigate to backend directory:
+
+```bash
+cd backend-fastapi
+```
+
+2. Create a virtual environment (recommended):
+
+```bash
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+
+# macOS/Linux
+source venv/bin/activate
+```
+
+3. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Create uploads directory:
+
+```bash
+mkdir uploads
+```
+
+5. Start the backend server:
+
+```bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+The API will be available at: `http://localhost:8000`
+API docs at: `http://localhost:8000/docs`
+
+### Frontend Setup
+
+1. Navigate to frontend directory:
+
+```bash
+cd frontend-react
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+npm run dev
+```
+
+The frontend will be available at: `http://localhost:3000`
+
+## 📱 Usage
+
+### User Flow
+
+1. **Browse Products**: Go to `/products` to see available clothing items
+2. **Check Size**: Click "Check My Size" on any product
+3. **Upload Photo**: Upload a clear upper-body photo facing the camera
+4. **Get Results**: View your measurements and fit recommendations
+
+### Admin Access
+
+Access the admin panel at:
+
+```
+http://localhost:3000/admin?key=MYSECRET
+```
+
+Admin capabilities:
+
+- Add new products with measurements
+- Upload product images
+- Delete existing products
+
+## 🔌 API Endpoints
+
+| Method | Endpoint                                  | Description                          |
+| ------ | ----------------------------------------- | ------------------------------------ |
+| GET    | `/`                                       | Health check                         |
+| GET    | `/products`                               | Get all products                     |
+| GET    | `/products/{id}`                          | Get single product                   |
+| POST   | `/admin/add-product?key=MYSECRET`         | Add new product                      |
+| DELETE | `/admin/delete-product/{id}?key=MYSECRET` | Delete product                       |
+| POST   | `/measure`                                | Extract measurements from image      |
+| POST   | `/compare`                                | Compare user vs product measurements |
+| POST   | `/analyze?product_id={id}`                | Combined measure + compare           |
+
+## 📊 Size Comparison Logic
+
+The system compares user measurements with product measurements:
+
+| Difference      | Status            |
+| --------------- | ----------------- |
+| > +2 inches     | Loose             |
+| -2 to +2 inches | Normal (Good Fit) |
+| < -2 inches     | Tight             |
+
+## 🤖 AI Measurement Extraction
+
+The system uses MediaPipe Pose to detect body landmarks:
+
+- **Shoulder Width**: Distance between left and right shoulder landmarks
+- **Chest**: Estimated from shoulder width (multiplier-based)
+- **Sleeve Length**: Shoulder → Elbow → Wrist distance
+- **Torso Length**: Shoulder to hip distance
+- **Neck**: Estimated from face width
+
+**Scaling Reference**: Face width (~6 inches) is used to convert pixel measurements to inches.
+
+## 📝 Sample API Response
+
+```json
+{
+  "user_measurements": {
+    "shoulder": 17.2,
+    "chest": 38.5,
+    "sleeve": 24.0,
+    "length": 26.5
+  },
+  "product_measurements": {
+    "shoulder": 16,
+    "chest": 40,
+    "sleeve": 25,
+    "length": 28
+  },
+  "fit_report": {
+    "shoulder_fit": {
+      "difference": -1.2,
+      "status": "Normal",
+      "description": "Good fit (-1.2 inches snug)"
+    },
+    "chest_fit": {
+      "difference": 1.5,
+      "status": "Normal",
+      "description": "Good fit (+1.5 inches room)"
+    },
+    "overall": "Good Fit",
+    "recommendation": "Recommended: Normal Fit"
+  }
+}
+```
+
+## 📸 Photo Guidelines
+
+For best measurement accuracy:
+
+- Use a clear, well-lit photo
+- Face the camera directly
+- Stand straight with arms slightly away from body
+- Wear fitted clothing (not baggy)
+- Include full upper body (head to hips)
+
+## 🔮 Future Upgrades
+
+This codebase is designed to be modular for future enhancements:
+
+- [ ] User authentication system
+- [ ] Cloud storage (AWS S3, Cloudinary)
+- [ ] Full VTON model integration (CP-VTON / TryOnDiffusion)
+- [ ] Database migration (PostgreSQL/MongoDB)
+- [ ] Improved measurement accuracy with depth sensors
+- [ ] Multiple size recommendations (S, M, L, XL)
+- [ ] Mobile app version
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **MediaPipe installation fails**
+
+   ```bash
+   pip install mediapipe --upgrade
+   ```
+
+2. **CORS errors**
+
+   - Ensure backend is running on port 8000
+   - Check that frontend is on port 3000 or 5173
+
+3. **Image upload fails**
+
+   - Check that `/uploads` directory exists
+   - Verify file permissions
+
+4. **No pose detected**
+   - Use a clearer photo
+   - Ensure good lighting
+   - Face the camera directly
+
+## 📄 License
+
+MIT License - Feel free to use and modify for your projects.
+
+## 👥 Team & Credits
+
+This was built as a **Final Year Design Project (FYDP)** at Dawood University of Engineering and Technology, Karachi, supervised by Mr. Irfan Ahmed, titled *"AI-Powered Virtual Try-On System for E-Commerce Apparel Website."*
+
+**Team members:** Muhammad Anas, Faraz Ahmed, Moiz Zaib, Hassaan Qaisar, Daniyal Ahmed
+
+**My contribution (Moiz Zaib):** Backend — FastAPI application, size-comparison/fit logic, and API endpoints. *(Update this line with the specific parts you personally built — e.g. which endpoints, which service files, or which parts of the measurement pipeline.)*
+
+The original team repository is at [muhammad-anas19/fyp-ecom-vton](https://github.com/muhammad-anas19/fyp-ecom-vton) — this copy is maintained for my own portfolio with the same codebase.
+
+---
+
+Built with ❤️ using FastAPI, React, and MediaPipe
